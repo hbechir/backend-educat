@@ -26,12 +26,15 @@ SECRET_KEY = 'django-insecure-#406k)n=y6ym8qrj1!n650py(=cj&rdnkn3sc$z@z^$g!7quev
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '.vercel.app',
-    '127.0.0.1',
-    'localhost'
-    'now.sh'
-]
+
+#import invironment variables
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+HOST = os.getenv('HOST')
+
+ALLOWED_HOSTS = [HOST]
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
@@ -118,14 +121,24 @@ WSGI_APPLICATION = 'educat.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+#load database variables
+DB_NAME = os.getenv('DB_NAME')
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'FcChzWAKQznpHsbmRigvINEyLvHKvyFe',
-        'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '52205',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
+        
     }
 }
 
