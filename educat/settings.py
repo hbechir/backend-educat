@@ -92,7 +92,7 @@ MIDDLEWARE = [
 
 ]
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = ['educatbackend150802.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://educatbackend150802.up.railway.app']
 ROOT_URLCONF = 'educat.urls'
 
 TEMPLATES = [
