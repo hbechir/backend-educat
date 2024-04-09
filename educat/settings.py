@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost'
     'now.sh',
-    CURRENT_HOST_FROM_ENV
+    'educatbackend150802.up.railway.app',
     
 ]
 
