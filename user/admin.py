@@ -3,4 +3,4 @@ from .models import Profile,VerificationCode
 
 # Register your models here.
 admin.site.register(Profile)
-amdin.site.register(VerificationCode)
+admin.site.register(VerificationCode)
