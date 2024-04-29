@@ -34,7 +34,7 @@ load_dotenv()
 
 HOST = os.getenv('HOST')
 
-ALLOWED_HOSTS = [HOST]
+ALLOWED_HOSTS = [HOST,'localhost','127.0.0.1']
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
