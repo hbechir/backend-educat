@@ -1,6 +1,7 @@
 '''
  This script is used to extract data from the excel file.
- bjeh rabi 
+ 🚨🚨🚨🚨🚨🚨🚨🚨  IMPORTANT --------->  
+ 
  note that this script should be run in a django environment
  USE: python manage.py shell
  THEN: exec(open('educat/utils/SchoolsRawData/extract.py').read())

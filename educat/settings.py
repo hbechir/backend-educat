@@ -15,7 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+import os
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -27,14 +27,8 @@ SECRET_KEY = 'django-insecure-#406k)n=y6ym8qrj1!n650py(=cj&rdnkn3sc$z@z^$g!7quev
 DEBUG = True
 
 
-#import invironment variables
-import os
-from dotenv import load_dotenv
-load_dotenv()
-
-HOST = os.getenv('HOST')
-
-ALLOWED_HOSTS = [HOST,'localhost','127.0.0.1']
+CURRENT_HOST_FROM_ENV = os.getenv('HOST')
+ALLOWED_HOSTS = ["*"]
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
@@ -55,19 +49,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'BASE',
-    'user',
-    'questions',
-    'gifts',
+    'whitenoise.runserver_nostatic',    
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
     'django.contrib.sites',
     'allauth',
-    'courses',
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'courses',
+    'BASE',
+    'user',
+    'questions',
+    'gifts',
+    
     
     
 
@@ -80,6 +76,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -90,6 +87,7 @@ MIDDLEWARE = [
 
 ]
 CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = ['https://educatbackend150802.up.railway.app']
 ROOT_URLCONF = 'educat.urls'
 
 TEMPLATES = [
@@ -121,24 +119,14 @@ WSGI_APPLICATION = 'educat.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
-#load database variables
-DB_NAME = os.getenv('DB_NAME')
-DB_USER = os.getenv('DB_USER')
-DB_PASSWORD = os.getenv('DB_PASSWORD')
-DB_HOST = os.getenv('DB_HOST')
-DB_PORT = os.getenv('DB_PORT')
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT,
-        
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'FcChzWAKQznpHsbmRigvINEyLvHKvyFe',
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': '52205',
     }
 }
 
@@ -186,7 +174,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
