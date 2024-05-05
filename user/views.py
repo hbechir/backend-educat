@@ -37,7 +37,6 @@ def FinishProfile(request):
     school_id = data.get('school_id')
     if not school_id:
         return Response({'message': 'School ID is required'}, status=400)
-
     # Get the school with the provided ID
     try:
         school = School.objects.get(id=school_id)

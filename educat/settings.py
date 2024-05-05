@@ -30,9 +30,8 @@ DEBUG = True
 CURRENT_HOST_FROM_ENV = os.getenv('HOST')
 ALLOWED_HOSTS = ["*"]
 
-MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = '/media/'
-
+MEDIA_ROOT ='https://educatstatic.s3.amazonaws.com/'
+MEDIA_URL = 'https://educatstatic.s3.amazonaws.com/'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
@@ -63,6 +62,7 @@ INSTALLED_APPS = [
     'user',
     'questions',
     'gifts',
+    'storages'
     
     
     
@@ -184,3 +184,17 @@ STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+AWS_ACCESS_KEY_ID = 'AKIAT6UNIRDINM6QUPS5 '
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'educatstatic'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'eu-north-1'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+DEFAULT_FILE_STORAGE = 'educat.storage_backends.CleanURLS3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
