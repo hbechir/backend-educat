@@ -18,7 +18,9 @@ def send_verification_code(phone_number, code,first_name):
     message = client.messages.create(
         body=f'Hello {first_name}, Your EDUCAT verification code is {code}',
         from_=TWILIO_NUMBER,  # Replace with your Twilio number
-        to=phone_number
+        # to=phone_number
+        # For testing purposes and because of twilio trial account, we will use our own number
+        to='+21694950169' # 👈🏽👈🏽👈🏽👈🏽 Bechir's number 
     )
 
     return message.sid
